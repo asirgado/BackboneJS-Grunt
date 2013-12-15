@@ -98,10 +98,10 @@ module.exports = (grunt) ->
                     underscore:   '../scripts/libraries/underscore/underscore-min',
                     backbone:     '../scripts/libraries/backbone/backbone-min',
                     text:         '../scripts/libraries/text/text',
-                    spin:         '../scripts/libraries/spin.js/spin',
+                    spin:         '../scripts/libraries/spin.js/dist/spin.min',
 
                     momentpt:     '../scripts/libraries/momentjs/lang/pt',
-                    moment:       '../scripts/libraries/momentjs/moment',
+                    moment:       '../scripts/libraries/momentjs/min/moment.min',
 
                     transition:   '../scripts/libraries/bootstrap-sass/js/transition',
                     dropdown:     '../scripts/libraries/bootstrap-sass/js/dropdown'
