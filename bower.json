@@ -1,21 +1,21 @@
 {
 
-	"name"					: "Project",
-	"version"				: "1.0.0",
-	"dependencies"	: {
+  "name"          : "Project",
+  "version"       : "1.0.0",
+  "dependencies"  : {
 
-		"backbone" 						: "*",
-		"bootstrap-sass"			: "*",
-		"font-awesome"				: "*",
-		"jquery"							: "*",
-		"jquery-ui"						: "*",
-		"momentjs"						: "*",
-		"requirejs"						: "*",
-		"spin.js"							: "*",
-		"text"								: "*",
-		"underscore"					: "*",
-		"visualsearch"				: "*"
+    "backbone"            : "*",
+    "bootstrap-sass"      : "*",
+    "font-awesome"        : "*",
+    "jquery"              : "*",
+    "jquery-ui"           : "*",
+    "momentjs"            : "*",
+    "requirejs"           : "*",
+    "spin.js"             : "*",
+    "text"                : "*",
+    "underscore"          : "*",
+    "visualsearch"        : "*"
 
-	}
+  }
 
 }
