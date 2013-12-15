@@ -1,0 +1,22 @@
+{
+
+  "name" : "Project",
+
+  "version" : "1.0.0",
+
+  "devDependencies": {
+
+    "grunt": "*",
+    "grunt-contrib-watch"     : "*",
+    "grunt-contrib-coffee"    : "*",
+    "grunt-contrib-haml"      : "*",
+    "grunt-contrib-sass"      : "*",
+    "grunt-contrib-requirejs" : "*",
+    "grunt-notify"            : "*",
+    "grunt-newer"             : "*",
+    "grunt-shell"             : "*",
+    "underscore"              : "*"
+
+  }
+
+}
