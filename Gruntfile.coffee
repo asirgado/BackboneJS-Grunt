@@ -211,6 +211,14 @@ module.exports = (grunt) ->
         ]
 
 
+    coffeelint:
+
+      check:
+        files: [
+          expand: yes
+          cwd: '<%= appSrc %>'
+          src: ['**/*.coffee']
+        ]
 
 
 
@@ -226,7 +234,7 @@ module.exports = (grunt) ->
 
       coffeescript:
         files: ['<%= appSrc %>/**/*.coffee']
-        tasks: ['newer:coffee:compile', 'notify:msg']
+        tasks: ['newer:coffee:compile', 'notify:msg', 'newer:coffeelint:check']
 
 
 
@@ -261,10 +269,10 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-contrib-coffee'
   grunt.loadNpmTasks 'grunt-contrib-sass'
   grunt.loadNpmTasks 'grunt-contrib-haml'
-
   grunt.loadNpmTasks 'grunt-contrib-requirejs'
-
   grunt.loadNpmTasks 'grunt-contrib-watch'
+
+  grunt.loadNpmTasks 'grunt-coffeelint'
   grunt.loadNpmTasks 'grunt-newer'
   grunt.loadNpmTasks 'grunt-notify'
   grunt.loadNpmTasks 'grunt-shell'

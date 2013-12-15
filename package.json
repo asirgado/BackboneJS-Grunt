@@ -12,6 +12,7 @@
     "grunt-contrib-haml"      : "*",
     "grunt-contrib-sass"      : "*",
     "grunt-contrib-requirejs" : "*",
+    "grunt-coffeelint"        : "*",
     "grunt-notify"            : "*",
     "grunt-newer"             : "*",
     "grunt-shell"             : "*",
