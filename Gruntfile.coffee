@@ -2,307 +2,302 @@ _ = require 'underscore'
 
 module.exports = (grunt) ->
 
-	# index.html template
-	index_tmpl =	"""
-								!!!
-								%html
-									%head
-										%meta{:charset => "utf-8"}/
-										%meta{:'http-equiv' => "X-UA-Compatible", :content => "IE=edge,chrome=1"}/
-										%meta{:name => "viewport", :content => "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"}/
-										%title
-											Document
-										%link{:rel => "stylesheet", :href => "css/main.css"}/
-									%body
-										#main
-										%script{:'data-main' => "scripts/main", :src => "scripts/libraries/requirejs/require.js"}
-								"""
+  # index.html template
+  index_tmpl =  """
+                !!!
+                %html
+                  %head
+                    %meta{:charset => "utf-8"}/
+                    %meta{:'http-equiv' => "X-UA-Compatible", :content => "IE=edge,chrome=1"}/
+                    %meta{:name => "viewport", :content => "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"}/
+                    %title
+                      Document
+                    %link{:rel => "stylesheet", :href => "css/main.css"}/
+                  %body
+                    #main
+                    %script{:'data-main' => "scripts/main", :src => "scripts/libraries/requirejs/require.js"}
+                """
 
-	# main.js template
-	main_tmpl =	"""
-							requirejs.config
+  # main.js template
+  main_tmpl = """
+              requirejs.config
 
-								appDir: '../'
-								baseUrl: 'scripts'
+                appDir: '../'
+                baseUrl: 'scripts'
 
-								paths:
+                paths:
 
-									'jquery'						:	'libraries/jquery/jquery'
-									'underscore'				: 'libraries/underscore/underscore'
-									'backbone'					: 'libraries/backbone/backbone'
+                  'jquery'            : 'libraries/jquery/jquery'
+                  'underscore'        : 'libraries/underscore/underscore'
+                  'backbone'          : 'libraries/backbone/backbone'
 
-									# Plugins
-									'text'							:	'libraries/text/text'
-									'spin'							:	'libraries/spin.js/spin'
+                  # Plugins
+                  'text'              : 'libraries/text/text'
+                  'spin'              : 'libraries/spin.js/spin'
 
-									# Moment
-									'momentpt'					:	'libraries/momentjs/lang/pt'
-									'moment'						:	'libraries/momentjs/moment'
+                  # Moment
+                  'momentpt'          : 'libraries/momentjs/lang/pt'
+                  'moment'            : 'libraries/momentjs/moment'
 
-									# Bootstrap
-									'transition'				: 'libraries/bootstrap-sass/js/transition'
-									'dropdown'					:	'libraries/bootstrap-sass/js/dropdown'
+                  # Bootstrap
+                  'transition'        : 'libraries/bootstrap-sass/js/transition'
+                  'dropdown'          : 'libraries/bootstrap-sass/js/dropdown'
 
-									# jQuery UI
-									'jquery.ui.core'					: 'libraries/jquery-ui/ui/jquery.ui.core'
-									'jquery.ui.autocomplete'	: 'libraries/jquery-ui/ui/jquery.ui.autocomplete'
-									'jquery.ui.widget'				: 'libraries/jquery-ui/ui/jquery.ui.widget'
+                  # jQuery UI
+                  'jquery.ui.core'          : 'libraries/jquery-ui/ui/jquery.ui.core'
+                  'jquery.ui.autocomplete'  : 'libraries/jquery-ui/ui/jquery.ui.autocomplete'
+                  'jquery.ui.widget'        : 'libraries/jquery-ui/ui/jquery.ui.widget'
 
 
-								shim:
+                shim:
 
-									'backbone':
+                  'backbone':
 
-										deps: ['underscore', 'jquery']
-										exports: 'Backbone'
+                    deps: ['underscore', 'jquery']
+                    exports: 'Backbone'
 
-									'dropdown'		: ['transition']
-									'transition'	: ['jquery']
-									'momentpt'		: ['moment']
+                  'dropdown'    : ['transition']
+                  'transition'  : ['jquery']
+                  'momentpt'    : ['moment']
 
 
-							require ['app'], (app) ->
+              require ['app'], (app) ->
 
-								do app.init
-							"""
+                do app.init
+              """
 
 
-	# app.js template
-	app_tmpl =	"""
-							define (require) ->
+  # app.js template
+  app_tmpl =  """
+              define (require) ->
 
-								"use strict"
+                "use strict"
 
-								Backbone = require 'backbone'
+                Backbone = require 'backbone'
 
-								App =
+                App =
 
-									init: ->
+                  init: ->
 
-										console.log "Application initialized."
-							"""
+                    console.log "Application initialized."
+              """
 
 
-	# App build template
-	build_tmpl =	"""
-								({
+  # App build template
+  build_tmpl =  """
+                ({
 
-									baseUrl: '../scripts',
-									name: 'main',
-									out: '../../../dist/scripts/main.min.js',
+                  baseUrl: '../scripts',
+                  name: 'main',
+                  out: '../../../dist/scripts/main.min.js',
 
-									paths: {
+                  paths: {
 
-										requireLib:		'../scripts/libraries/requirejs/require',
-										jquery:				'../scripts/libraries/jquery/jquery.min',
-										underscore:		'../scripts/libraries/underscore/underscore-min',
-										backbone:			'../scripts/libraries/backbone/backbone-min',
-										text:					'../scripts/libraries/text/text',
-										spin:					'../scripts/libraries/spin.js/spin',
+                    requireLib:   '../scripts/libraries/requirejs/require',
+                    jquery:       '../scripts/libraries/jquery/jquery.min',
+                    underscore:   '../scripts/libraries/underscore/underscore-min',
+                    backbone:     '../scripts/libraries/backbone/backbone-min',
+                    text:         '../scripts/libraries/text/text',
+                    spin:         '../scripts/libraries/spin.js/spin',
 
-										momentpt:			'../scripts/libraries/momentjs/lang/pt',
-										moment:				'../scripts/libraries/momentjs/moment',
+                    momentpt:     '../scripts/libraries/momentjs/lang/pt',
+                    moment:       '../scripts/libraries/momentjs/moment',
 
-										transition:		'../scripts/libraries/bootstrap-sass/js/transition',
-										dropdown:			'../scripts/libraries/bootstrap-sass/js/dropdown'
+                    transition:   '../scripts/libraries/bootstrap-sass/js/transition',
+                    dropdown:     '../scripts/libraries/bootstrap-sass/js/dropdown'
 
-									},
+                  },
 
-									shim: {
+                  shim: {
 
-										backbone: {
-											deps: ['underscore', 'jquery'],
-											exports: 'Backbone'
-										},
+                    backbone: {
+                      deps: ['underscore', 'jquery'],
+                      exports: 'Backbone'
+                    },
 
-										dropdown		: ['transition'],
-										transition	: ['jquery'],
+                    dropdown    : ['transition'],
+                    transition  : ['jquery'],
 
-										momentpt		: ['moment']
+                    momentpt    : ['moment']
 
-									},
+                  },
 
-									include: ['requireLib'],
+                  include: ['requireLib'],
 
-									skipDirOptimize: true,
+                  skipDirOptimize: true,
 
-									optimize: 'uglify2'
+                  optimize: 'uglify2'
 
-								})
-								"""
+                })
+                """
 
-	css_build = """
-							({
+  css_build = """
+              ({
 
-							optimizeCss: 'standard',
-							cssIn: '../css/main.css',
-							out: '../../../dist/css/stylesheet.min.css'
+              optimizeCss: 'standard',
+              cssIn: '../css/main.css',
+              out: '../../../dist/css/stylesheet.min.css'
 
-							})
-							"""
+              })
+              """
 
-	html_build =	"""
-								<!DOCTYPE html>
-								<html>
-									<head>
-										<meta charset='utf-8'>
-										<meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
-										<meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
-										<title>Document</title>
-										<link rel="stylesheet" href="css/stylesheet.min.css">
-									</head>
-									<body>
-										<div id="main"></div>
-										<script src='scripts/main.min.js'></script>
-									</body>
-								</html>
-								"""
+  html_build =  """
+                <!DOCTYPE html>
+                <html>
+                  <head>
+                    <meta charset='utf-8'>
+                    <meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
+                    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+                    <title>Document</title>
+                    <link rel="stylesheet" href="css/stylesheet.min.css">
+                  </head>
+                  <body>
+                    <div id="main"></div>
+                    <script src='scripts/main.min.js'></script>
+                  </body>
+                </html>
+                """
 
 
 
 
+  # Grunt config
+  grunt.initConfig
 
+    appSrc: 'application/_src'
+    assets: 'application/httpdocs'
 
-	# Grunt config
-	grunt.initConfig
+    coffee:
 
-		appSrc: 'application/_src'
-		assets:	'application/httpdocs'
+      compile:
 
-		coffee:
+        files: [
+          expand: yes
+          cwd: '<%= appSrc %>'
+          src: ['**/*.coffee']
+          dest: '<%= assets %>'
+          ext: '.js'
+        ]
 
-			compile:
 
-				files: [
-					expand: yes
-					cwd: '<%= appSrc %>'
-					src: ['**/*.coffee']
-					dest: '<%= assets %>'
-					ext: '.js'
-				]
+    haml:
 
+      compile:
 
-		haml:
+        files: [
+          expand: yes
+          cwd: '<%= appSrc %>'
+          src: ['**/*.haml']
+          dest: '<%= assets %>'
+          ext: '.html'
+        ]
 
-			compile:
 
-				files: [
-					expand: yes
-					cwd: '<%= appSrc %>'
-					src: ['**/*.haml']
-					dest: '<%= assets %>'
-					ext: '.html'
-				]
+    sass:
 
+      compile:
 
-		sass:
+        options:
+          style: 'expanded'
+          compass: yes
+          lineNumbers: yes
 
-			compile:
+        files: [
+          expand: yes
+          cwd: '<%= appSrc %>'
+          src: ['**/*.scss']
+          dest: '<%= assets %>/css'
+          ext: '.css'
+        ]
 
-				options:
-					style: 'expanded'
-					compass: yes
-					lineNumbers: yes
 
-				files: [
-					expand: yes
-					cwd: '<%= appSrc %>'
-					src: ['**/*.scss']
-					dest: '<%= assets %>/css'
-					ext: '.css'
-				]
 
 
 
+    watch:
 
+      scss:
+        files: ['<%= appSrc %>/**/*.scss']
+        tasks: ['newer:sass:compile', 'notify:msg']
 
-		watch:
+      hamlc:
+        files: ['<%= appSrc %>/**/*.haml']
+        tasks: ['newer:haml:compile', 'notify:msg']
 
-			scss:
-				files: ['<%= appSrc %>/**/*.scss']
-				tasks: ['newer:sass:compile', 'notify:msg']
+      coffeescript:
+        files: ['<%= appSrc %>/**/*.coffee']
+        tasks: ['newer:coffee:compile', 'notify:msg']
 
-			hamlc:
-				files: ['<%= appSrc %>/**/*.haml']
-				tasks: ['newer:haml:compile', 'notify:msg']
 
-			coffeescript:
-				files: ['<%= appSrc %>/**/*.coffee']
-				tasks: ['newer:coffee:compile', 'notify:msg']
 
 
+    notify:
 
+      msg:
+        options:
+          title: 'Running watch:compile..'
+          message: 'Done, without errors.'
 
-		notify:
 
-			msg:
-				options:
-					title: 'Running watch:compile..'
-					message: 'Done, without errors.'
 
 
+    shell:
 
+      options:
+        stdout: yes
+        stderr: yes
 
-		shell:
+      dist:
+        command: [
+          'r.js -o application/httpdocs/build/application.build.js'
+          'r.js -o application/httpdocs/build/css.build.js'
+        ].join '&&'
 
-			options:
-				stdout: yes
-				stderr: yes
+      init:
+        command: 'bower install'
 
-			dist:
-				command: [
-					'r.js -o application/httpdocs/build/application.build.js'
-					'r.js -o application/httpdocs/build/css.build.js'
-				].join '&&'
 
-			init:
-				command: 'bower install'
 
+  grunt.loadNpmTasks 'grunt-contrib-coffee'
+  grunt.loadNpmTasks 'grunt-contrib-sass'
+  grunt.loadNpmTasks 'grunt-contrib-haml'
 
+  grunt.loadNpmTasks 'grunt-contrib-requirejs'
 
+  grunt.loadNpmTasks 'grunt-contrib-watch'
+  grunt.loadNpmTasks 'grunt-newer'
+  grunt.loadNpmTasks 'grunt-notify'
+  grunt.loadNpmTasks 'grunt-shell'
 
 
-	grunt.loadNpmTasks 'grunt-contrib-coffee'
-	grunt.loadNpmTasks 'grunt-contrib-sass'
-	grunt.loadNpmTasks 'grunt-contrib-haml'
+  grunt.registerTask 'default', ['watch']
 
-	grunt.loadNpmTasks 'grunt-contrib-requirejs'
 
-	grunt.loadNpmTasks 'grunt-contrib-watch'
-	grunt.loadNpmTasks 'grunt-newer'
-	grunt.loadNpmTasks 'grunt-notify'
-	grunt.loadNpmTasks 'grunt-shell'
+  # Build task
+  grunt.task.registerTask 'build', 'builds dist folder', ->
 
+    grunt.task.run ['shell:dist']
+    grunt.file.write "dist/index.html", _.template html_build, {}
 
-	grunt.registerTask 'default', ['watch']
 
+  # Application init task
+  grunt.task.registerTask 'init', 'creates application structure', ->
 
-	# Build task
-	grunt.task.registerTask 'build', 'builds dist folder', ->
+    grunt.task.run ['shell:init']
 
-		grunt.task.run ['shell:dist']
-		grunt.file.write "dist/index.html",	_.template html_build, {}
+    src = "application/_src"
 
+    # Application base files
+    grunt.file.write "#{src}/scripts/app.coffee",  _.template app_tmpl, {}
+    grunt.file.write "#{src}/scripts/main.coffee", _.template main_tmpl, {}
+    grunt.file.write "#{src}/main.scss"
+    grunt.file.write "#{src}/index.haml", _.template index_tmpl, {}
 
+    # Build files
+    grunt.file.write "application/httpdocs/build/application.build.js", _.template build_tmpl, {}
+    grunt.file.write "application/httpdocs/build/css.build.js", _.template css_build, {}
 
-	# Application init task
-	grunt.task.registerTask 'init', 'creates application structure', ->
-
-		grunt.task.run ['shell:init']
-
-		src = "application/_src"
-
-		# Application base files
-		grunt.file.write "#{src}/scripts/app.coffee",	 _.template app_tmpl, {}
-		grunt.file.write "#{src}/scripts/main.coffee", _.template main_tmpl, {}
-		grunt.file.write "#{src}/main.scss"
-		grunt.file.write "#{src}/index.haml", _.template index_tmpl, {}
-
-		# Build files
-		grunt.file.write "application/httpdocs/build/application.build.js",	_.template build_tmpl, {}
-		grunt.file.write "application/httpdocs/build/css.build.js",	_.template css_build, {}
-
-		grunt.task.run ['coffee', 'haml', 'sass', 'watch']
+    grunt.task.run ['coffee', 'haml', 'sass', 'watch']
 
 
 
