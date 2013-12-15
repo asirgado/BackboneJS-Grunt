@@ -1,7 +1,8 @@
 ## BackboneJs Environment v2.0.0 ##
-Environment is installed via npm, the Node.js package manager, tasks via Grunt.js.
+Environment is installed via npm, the Node.js, tasks via Grunt.js and dependencies with Bower.
 
 ### Coffeescript + HAML + SASS ###
+
 ##### includes: #####
 * RequireJS + jquery + !text plugin
 * BackboneJS
