@@ -4,6 +4,7 @@ module.exports = (grunt) ->
 
   # index.html template
   index_tmpl =  """
+                - # encoding: UTF-8
                 !!!
                 %html
                   %head
